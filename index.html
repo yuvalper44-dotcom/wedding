@@ -76,24 +76,6 @@ nav ul a:hover { color: var(--ink); }
   overflow: hidden;
   isolation: isolate;
 }
-/* hero photo — small framed portrait */
-.hero-photo {
-  width: 180px;
-  height: 240px;
-  margin: 0 auto 2.5rem;
-  background-image: url('couple.jpg');
-  background-size: cover;
-  background-position: center 25%;
-  background-repeat: no-repeat;
-  filter: grayscale(0.3) contrast(0.95);
-  border: 0.5px solid var(--line);
-  box-shadow: 0 1px 30px rgba(17,17,16,0.08);
-  opacity: 0;
-  animation: fadeUp 0.9s ease forwards;
-  animation-delay: 0.05s;
-}
-/* fallback: if image is missing, hide the frame entirely */
-.hero-photo.no-image { display: none; }
 .hero-inner {
   max-width: 640px;
   will-change: transform, opacity;
@@ -473,7 +455,6 @@ footer .footer-names { font-family: var(--serif); font-size: 1rem; color: var(--
 
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-photo" id="heroPhoto"></div>
     <div class="date-stamp fade-in d1">06 . 12 . 2026</div>
     <h1 class="fade-in d2"><em id="name1">יובל</em></h1>
     <span class="ampersand fade-in d3">&amp;</span>
