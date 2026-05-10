@@ -486,4 +486,438 @@ footer .footer-names { font-family: var(--serif); font-size: 1rem; color: var(--
       </div>
       <div class="detail-block">
         <h3 id="d-park-title">חנייה</h3>
-        <p
+        <p id="d-park-body">חניון בית הדר ממוקם צמוד למקום.<br>עלויות החנייה מכוסות על ידינו.<br>תחנת הרכבת: השלום.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="map-section">
+  <div class="section-inner reveal">
+    <div class="section-label" id="label-map">מפה</div>
+    <p id="map-address" style="color:var(--mid); font-size:14px;">מנחם בגין 21, תל אביב-יפו</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps?q=Beit+Hasmachot+Menachem+Begin+21+Tel+Aviv&output=embed"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Beit Hasmachot location map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section id="rsvp">
+  <div class="section-inner reveal">
+    <div class="section-label" id="label-rsvp">אישור הגעה</div>
+    <h2 id="rsvp-title">האם תגיעו?</h2>
+    <p class="rsvp-sub" id="rsvp-sub">אנא אשרו הגעה עד 01.11.2026</p>
+
+    <div class="rsvp-form-wrap" id="rsvpFormWrap">
+      <div class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <label id="f-name-label" for="f-name">שם מלא</label>
+          <input type="text" id="f-name" autocomplete="name" placeholder="שם ומשפחה" />
+          <div class="field-error" id="f-name-err">נא להזין שם</div>
+        </div>
+        <div class="form-row">
+          <label id="f-phone-label" for="f-phone">טלפון</label>
+          <input type="tel" id="f-phone" autocomplete="tel" inputmode="tel" placeholder="050-000-0000" />
+          <div class="field-error" id="f-phone-err">נא להזין מספר טלפון תקין</div>
+        </div>
+        <div class="form-row">
+          <label id="f-attend-label">האם תגיעו?</label>
+          <div class="attend-toggle">
+            <button type="button" class="attend-btn active" id="btn-yes" onclick="setAttend('yes')">כן, בשמחה!</button>
+            <button type="button" class="attend-btn" id="btn-no" onclick="setAttend('no')">לצערי לא</button>
+          </div>
+        </div>
+        <div class="form-row" id="guests-row">
+          <label id="f-guests-label" for="f-guests">מספר מגיעים</label>
+          <select id="f-guests">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5+">5+</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label id="f-note-label" for="f-note">הערות (אלרגיות, בקשות מיוחדות)</label>
+          <textarea id="f-note" rows="3" placeholder="אופציונלי..."></textarea>
+        </div>
+        <button type="button" class="submit-btn" id="submitBtn" onclick="submitRSVP()">
+          <span class="btn-text">שלח אישור</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <span id="success-text">תודה! נתראה בחתונה 🤍</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">יובל & אילנה</div>
+  <div id="footer-date">06 · 12 · 2026 · בית השמחות · תל אביב</div>
+  <div id="footer-made" style="font-size:11px;">בשמחות</div>
+</footer>
+
+<script>
+function openMobileMenu() { document.getElementById('nav-mobile-overlay').classList.add('open'); }
+function closeMobileMenu() { document.getElementById('nav-mobile-overlay').classList.remove('open'); }
+
+const attend = { val: 'yes' };
+function setAttend(v) {
+  attend.val = v;
+  document.getElementById('btn-yes').classList.toggle('active', v === 'yes');
+  document.getElementById('btn-no').classList.toggle('active', v === 'no');
+  document.getElementById('guests-row').style.display = v === 'yes' ? 'block' : 'none';
+}
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzkDzef7RKBxktgsGsyDzwFc8xtB8LTyrBNAUQWi512yPpBx_CQ9k_D_e-ReiTfcvwWMw/exec';
+
+function validatePhone(p) {
+  const digits = p.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
+}
+
+function clearError(id) {
+  const input = document.getElementById(id);
+  const err = document.getElementById(id + '-err');
+  if (input) input.classList.remove('error');
+  if (err) err.classList.remove('show');
+}
+function showError(id) {
+  const input = document.getElementById(id);
+  const err = document.getElementById(id + '-err');
+  if (input) input.classList.add('error');
+  if (err) err.classList.add('show');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  ['f-name','f-phone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearError(id));
+  });
+});
+
+function submitRSVP() {
+  const nameEl = document.getElementById('f-name');
+  const phoneEl = document.getElementById('f-phone');
+  const name = nameEl.value.trim();
+  const phone = phoneEl.value.trim();
+
+  let valid = true;
+  clearError('f-name'); clearError('f-phone');
+  if (name.length < 2) { showError('f-name'); valid = false; }
+  if (phone && !validatePhone(phone)) { showError('f-phone'); valid = false; }
+  if (!valid) {
+    (name.length < 2 ? nameEl : phoneEl).focus();
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  const payload = {
+    name,
+    phone,
+    attending: attend.val,
+    guests: attend.val === 'yes' ? document.getElementById('f-guests').value : '0',
+    notes: document.getElementById('f-note').value.trim(),
+    lang: currentLang,
+    timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })
+  };
+
+  const finish = () => {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+
+    const msgs = {
+      he: { yes: 'תודה! נתראה בחתונה 🤍', no: 'תודה שהודעת לנו. נחשוב עליך 🤍' },
+      en: { yes: 'Thank you! See you at the wedding 🤍', no: "Thanks for letting us know. We'll miss you 🤍" },
+      ru: { yes: 'Спасибо! Увидимся на свадьбе 🤍', no: 'Спасибо, что сообщили. Будем скучать 🤍' }
+    };
+    document.getElementById('success-text').textContent = msgs[currentLang][attend.val];
+
+    document.getElementById('rsvpFormWrap').classList.add('hide');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.add('show');
+    }, 250);
+  };
+
+  const minDelay = new Promise(r => setTimeout(r, 600));
+
+  const send = fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+
+  Promise.all([send, minDelay]).then(finish).catch(finish);
+}
+
+function setCdNum(id, value) {
+  const el = document.getElementById(id);
+  const str = String(value).padStart(2, '0');
+  if (el.textContent !== str) {
+    el.textContent = str;
+    if (el.dataset.firstShown !== '1') {
+      el.dataset.firstShown = '1';
+      el.classList.remove('rolling');
+      void el.offsetWidth;
+      el.classList.add('rolling');
+    }
+  }
+}
+function updateCountdown() {
+  const target = new Date('2026-12-06T20:00:00+02:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    setCdNum('cd-days', 0); setCdNum('cd-hours', 0); setCdNum('cd-mins', 0); setCdNum('cd-secs', 0);
+    return;
+  }
+  setCdNum('cd-days',  Math.floor(diff / 86400000));
+  setCdNum('cd-hours', Math.floor((diff % 86400000) / 3600000));
+  setCdNum('cd-mins',  Math.floor((diff % 3600000) / 60000));
+  setCdNum('cd-secs',  Math.floor((diff % 60000) / 1000));
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+window.addEventListener('DOMContentLoaded', updateCountdown);
+
+(function() {
+  const bar = document.getElementById('scroll-progress');
+  function update() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { update(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
+})();
+
+(function() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    targets.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  targets.forEach(el => io.observe(el));
+})();
+
+(function() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+  const inner = document.querySelector('.hero-inner');
+  const hint = document.getElementById('scrollHint');
+  if (!inner) return;
+  let ticking = false;
+  function update() {
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    const translate = y * 0.3;
+    const opacity = Math.max(0, 1 - (y / (vh * 0.7)));
+    inner.style.transform = 'translateY(' + translate + 'px)';
+    inner.style.opacity = (0.4 + opacity * 0.6).toFixed(3);
+    if (hint) hint.style.opacity = Math.max(0, 1 - y / 200).toFixed(3);
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+const strings = {
+  he: {
+    'nav-brand': 'יובל & אילנה',
+    'nav-countdown': 'ספירה',
+    'nav-details': 'פרטים',
+    'nav-map': 'מיקום',
+    'nav-rsvp': 'אישור הגעה',
+    'name1': 'יובל',
+    'name2': 'אילנה',
+    'hero-sub': 'מתחתנים — ואתם מוזמנים לחגוג איתנו',
+    'hero-venue': 'בית השמחות, תל אביב',
+    'scrollHint': 'גלול',
+    'label-countdown': 'ספירה לאחור',
+    'cd-d': 'ימים',
+    'cd-h': 'שעות',
+    'cd-m': 'דקות',
+    'cd-s': 'שניות',
+    'label-details': 'פרטי האירוע',
+    'd-when-title': 'מתי',
+    'd-when-body': 'יום ראשון, 6 בדצמבר 2026<br>קבלת פנים: 19:00<br>חופה וסעודה: 20:00',
+    'd-where-title': 'איפה',
+    'd-where-body': 'בית השמחות<br>מנחם בגין 21<br>תל אביב-יפו',
+    'venue-link-text': 'לאתר המקום →',
+    'd-park-title': 'חנייה',
+    'd-park-body': 'חניון בית הדר ממוקם צמוד למקום.<br>עלויות החנייה מכוסות על ידינו.<br>תחנת הרכבת: השלום.',
+    'label-map': 'מפה',
+    'map-address': 'מנחם בגין 21, תל אביב-יפו',
+    'label-rsvp': 'אישור הגעה',
+    'rsvp-title': 'האם תגיעו?',
+    'rsvp-sub': 'אנא אשרו הגעה עד 01.11.2026',
+    'f-name-label': 'שם מלא',
+    'f-name-err': 'נא להזין שם',
+    'f-phone-label': 'טלפון',
+    'f-phone-err': 'נא להזין מספר טלפון תקין',
+    'f-attend-label': 'האם תגיעו?',
+    'f-guests-label': 'מספר מגיעים',
+    'f-note-label': 'הערות (אלרגיות, בקשות מיוחדות)',
+    'submitBtn': 'שלח אישור',
+    'btn-yes': 'כן, בשמחה!',
+    'btn-no': 'לצערי לא',
+    'footer-date': '06 · 12 · 2026 · בית השמחות · תל אביב',
+    'footer-made': 'בשמחות',
+  },
+  en: {
+    'nav-brand': 'Yuval & Ilana',
+    'nav-countdown': 'Countdown',
+    'nav-details': 'Details',
+    'nav-map': 'Location',
+    'nav-rsvp': 'RSVP',
+    'name1': 'Yuval',
+    'name2': 'Ilana',
+    'hero-sub': "are getting married — and you're invited to celebrate with us",
+    'hero-venue': 'Beit Hasmachot, Tel Aviv',
+    'scrollHint': 'scroll',
+    'label-countdown': 'Countdown',
+    'cd-d': 'Days',
+    'cd-h': 'Hours',
+    'cd-m': 'Minutes',
+    'cd-s': 'Seconds',
+    'label-details': 'Event Details',
+    'd-when-title': 'When',
+    'd-when-body': 'Sunday, December 6th, 2026<br>Reception: 7:00 PM<br>Ceremony & Dinner: 8:00 PM',
+    'd-where-title': 'Where',
+    'd-where-body': 'Beit Hasmachot<br>21 Menachem Begin St.<br>Tel Aviv-Jaffa',
+    'venue-link-text': 'Visit venue website →',
+    'd-park-title': 'Parking',
+    'd-park-body': 'Beit Hadar parking garage is right next to the venue.<br>Parking costs are covered by us.<br>Train station: HaShalom.',
+    'label-map': 'Location',
+    'map-address': '21 Menachem Begin St., Tel Aviv-Jaffa',
+    'label-rsvp': 'RSVP',
+    'rsvp-title': 'Will you join us?',
+    'rsvp-sub': 'Please RSVP by November 1st, 2026',
+    'f-name-label': 'Full Name',
+    'f-name-err': 'Please enter your name',
+    'f-phone-label': 'Phone',
+    'f-phone-err': 'Please enter a valid phone number',
+    'f-attend-label': 'Will you attend?',
+    'f-guests-label': 'Number of guests',
+    'f-note-label': 'Notes (allergies, special requests)',
+    'submitBtn': 'Send RSVP',
+    'btn-yes': 'Joyfully attending!',
+    'btn-no': 'Regretfully declining',
+    'footer-date': '06 · 12 · 2026 · Beit Hasmachot · Tel Aviv',
+    'footer-made': 'beshimchot',
+  },
+  ru: {
+    'nav-brand': 'Юваль & Илана',
+    'nav-countdown': 'Обратный отсчёт',
+    'nav-details': 'Детали',
+    'nav-map': 'Место',
+    'nav-rsvp': 'Подтверждение',
+    'name1': 'Юваль',
+    'name2': 'Илана',
+    'hero-sub': 'приглашают вас разделить с ними радость свадьбы',
+    'hero-venue': 'Бейт а-Симхот, Тель-Авив',
+    'scrollHint': 'вниз',
+    'label-countdown': 'Обратный отсчёт',
+    'cd-d': 'Дней',
+    'cd-h': 'Часов',
+    'cd-m': 'Минут',
+    'cd-s': 'Секунд',
+    'label-details': 'Детали мероприятия',
+    'd-when-title': 'Когда',
+    'd-when-body': 'Воскресенье, 6 декабря 2026<br>Встреча гостей: 19:00<br>Церемония и ужин: 20:00',
+    'd-where-title': 'Где',
+    'd-where-body': 'Бейт а-Симхот<br>ул. Менахем Бегин 21<br>Тель-Авив-Яффо',
+    'venue-link-text': 'Сайт заведения →',
+    'd-park-title': 'Парковка',
+    'd-park-body': 'Парковка Бейт а-Дар находится рядом с залом.<br>Стоимость парковки покрывается нами.<br>Ж/д станция: а-Шалом.',
+    'label-map': 'Место',
+    'map-address': 'ул. Менахем Бегин 21, Тель-Авив-Яффо',
+    'label-rsvp': 'Подтверждение',
+    'rsvp-title': 'Вы придёте?',
+    'rsvp-sub': 'Пожалуйста, подтвердите участие до 01.11.2026',
+    'f-name-label': 'Полное имя',
+    'f-name-err': 'Пожалуйста, введите имя',
+    'f-phone-label': 'Телефон',
+    'f-phone-err': 'Пожалуйста, введите правильный номер',
+    'f-attend-label': 'Вы придёте?',
+    'f-guests-label': 'Количество гостей',
+    'f-note-label': 'Примечания (аллергии, особые пожелания)',
+    'submitBtn': 'Отправить',
+    'btn-yes': 'С радостью придём!',
+    'btn-no': 'К сожалению, нет',
+    'footer-date': '06 · 12 · 2026 · Бейт а-Симхот · Тель-Авив',
+    'footer-made': 'бешимхот',
+  }
+};
+
+let currentLang = 'he';
+function setLang(lang) {
+  currentLang = lang;
+  const isRtl = lang === 'he';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  ['he','en','ru'].forEach(l => {
+    const dt = document.getElementById('lang-'+l);
+    if (dt) dt.classList.toggle('active', l === lang);
+    const mob = document.getElementById('mob-lang-'+l);
+    if (mob) mob.classList.toggle('active', l === lang);
+  });
+  const mobLinks = {
+    'mob-countdown': strings[lang]['nav-countdown'],
+    'mob-details': strings[lang]['nav-details'],
+    'mob-map': strings[lang]['nav-map'],
+    'mob-rsvp': strings[lang]['nav-rsvp'],
+  };
+  for (const [id, val] of Object.entries(mobLinks)) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+  const s = strings[lang];
+  for (const [id, val] of Object.entries(s)) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  }
+  if (attend.val === 'yes') {
+    document.getElementById('btn-yes').classList.add('active');
+    document.getElementById('btn-no').classList.remove('active');
+  } else {
+    document.getElementById('btn-no').classList.add('active');
+    document.getElementById('btn-yes').classList.remove('active');
+  }
+}
+</script>
+
+<iframe name="hidden-iframe" style="display:none"></iframe>
+</body>
+</html>
