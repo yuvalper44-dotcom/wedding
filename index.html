@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+<meta charset="UTF-8<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>יובל & אילנה — 06.12.26</title>
@@ -25,6 +28,1413 @@
     color: var(--ink);
     font-family: var(--sans);
     font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--line);
+  }
+  nav .brand { font-family: var(--serif); font-size: 1rem; letter-spacing: 0.08em; color: var(--ink); }
+  nav ul { list-style: none; display: flex; gap: 2rem; direction: ltr; }
+  nav ul a { text-decoration: none; color: var(--mid); font-size: 13px; letter-spacing: 0.06em; transition: color 0.2s; }
+  nav ul a:hover { color: var(--ink); }
+  .lang-switcher {
+    display: flex; gap: 1px; background: var(--line); border: 0.5px solid var(--line); border-radius: 2px; overflow: hidden;
+  }
+  .lang-btn {
+    background: var(--paper); border: none; padding: 4px 10px;
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.06em;
+    color: var(--mid); cursor: pointer; transition: all 0.2s;
+  }
+  .lang-btn:hover { color: var(--ink); background: rgba(17,17,16,0.06); }
+  .lang-btn.active { background: var(--ink); color: var(--paper); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+  }
+  .hero-inner { max-width: 640px; }
+
+  .date-stamp {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--mid);
+    text-transform: uppercase; margin-bottom: 2.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    direction: ltr;
+  }
+  .date-stamp::before, .date-stamp::after {
+    content: ''; display: block; width: 40px; height: 0.5px; background: var(--mid);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+  h1 em { font-style: italic; }
+  .ampersand {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--mid);
+    display: block;
+    line-height: 1;
+    margin: 0.2rem 0;
+  }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-style: italic;
+    color: var(--mid);
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    font-size: 11px; letter-spacing: 0.15em; color: var(--mid);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  }
+  .scroll-hint::after {
+    content: ''; width: 0.5px; height: 40px; background: var(--mid);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  section + section { border-top: 0.5px solid var(--line); }
+  .section-inner { max-width: 800px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--mid);
+    text-transform: uppercase; margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--line); }
+
+  /* ── RTL overrides ── */
+  [dir="rtl"] .section-label { flex-direction: row-reverse; }
+  [dir="rtl"] .section-label::after { display: none; }
+  [dir="rtl"] .section-label::before { content: ''; flex: 1; height: 0.5px; background: var(--line); }
+  [dir="rtl"] nav { flex-direction: row-reverse; }
+  [dir="rtl"] footer { flex-direction: row-reverse; }
+
+  /* ── COUNTDOWN ── */
+  #countdown { text-align: center; }
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 0.5px solid var(--line);
+    margin: 2rem auto;
+    max-width: 500px;
+    direction: ltr;
+  }
+  .cd-unit {
+    background: var(--paper);
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  .cd-num {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+  .cd-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--mid); text-transform: uppercase;
+    display: block; margin-top: 0.4rem;
+  }
+
+  /* ── DETAILS ── */
+  #details .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .detail-block h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+  }
+  .detail-block p { color: var(--mid); font-size: 14px; line-height: 1.9; }
+  .detail-block a { color: var(--ink); }
+  .venue-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; margin-top: 1rem;
+    border-bottom: 0.5px solid var(--ink); padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .venue-link:hover { opacity: 0.5; }
+
+  /* ── MAP ── */
+  #map-section .map-container {
+    width: 100%; height: 360px;
+    background: #e8e6e0;
+    border: 0.5px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  #map-section iframe {
+    width: 100%; height: 100%;
+    border: none; filter: grayscale(1) contrast(0.9);
+  }
+
+  /* ── RSVP ── */
+  #rsvp { text-align: center; }
+  #rsvp h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+  #rsvp .rsvp-sub { color: var(--mid); font-size: 14px; margin-bottom: 3rem; }
+
+  .rsvp-form { max-width: 420px; margin: 0 auto; text-align: left; }
+  [dir="rtl"] .rsvp-form { text-align: right; }
+  .form-row { margin-bottom: 1.5rem; }
+  .form-row label {
+    display: block; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); margin-bottom: 0.5rem;
+  }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    background: transparent;
+    border: none; border-bottom: 0.5px solid var(--ink);
+    padding: 0.5rem 0;
+    font-family: var(--sans); font-size: 15px; font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    border-radius: 0;
+    appearance: none;
+    transition: border-color 0.2s;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--ink);
+    border-bottom-width: 1px;
+  }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-row select { background: var(--paper); cursor: pointer; }
+  .form-row select option { background: var(--paper); }
+
+  .attend-toggle {
+    display: flex; gap: 1px; background: var(--line); border: 0.5px solid var(--line);
+  }
+  .attend-btn {
+    flex: 1; padding: 0.8rem; background: var(--paper);
+    border: none; font-family: var(--sans); font-size: 13px; font-weight: 300;
+    letter-spacing: 0.06em; color: var(--mid); cursor: pointer; transition: all 0.2s;
+  }
+  .attend-btn.active { background: var(--ink); color: var(--paper); }
+
+  .submit-btn {
+    width: 100%; padding: 1rem;
+    background: var(--ink); color: var(--paper);
+    border: none; font-family: var(--sans); font-size: 13px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; margin-top: 2rem; transition: opacity 0.2s;
+  }
+  .submit-btn:hover { opacity: 0.75; }
+
+  .success-msg {
+    display: none; text-align: center; padding: 3rem 0;
+    font-family: var(--serif); font-size: 1.8rem; font-weight: 300;
+    font-style: italic; color: var(--mid);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 0.5px solid var(--line);
+    padding: 3rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--mid); letter-spacing: 0.08em;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .footer-names { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    animation: fadeUp 0.9s ease forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.3s; }
+  .d3 { animation-delay: 0.5s; }
+  .d4 { animation-delay: 0.7s; }
+  .d5 { animation-delay: 0.9s; }
+
+  /* ── MOBILE NAV MENU ── */
+  .nav-menu-btn {
+    display: none; background: none; border: none;
+    cursor: pointer; padding: 4px; color: var(--ink);
+    font-size: 22px; line-height: 1;
+  }
+  #nav-mobile-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(247,245,240,0.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  #nav-mobile-overlay.open { display: flex; }
+  #nav-mobile-overlay a {
+    font-family: var(--serif); font-size: 2rem; font-weight: 300;
+    text-decoration: none; color: var(--ink); font-style: italic;
+  }
+  #nav-mobile-overlay .close-btn {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    background: none; border: none; font-size: 24px; cursor: pointer; color: var(--ink);
+  }
+  [dir="rtl"] #nav-mobile-overlay .close-btn { left: auto; right: 1.5rem; }
+  #nav-mobile-overlay .lang-switcher { margin-top: 1rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    nav ul { display: none; }
+    .nav-menu-btn { display: block; }
+    section { padding: 3.5rem 1.25rem; }
+    #hero { padding: 6rem 1.25rem 3rem; }
+    #details .details-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .countdown-grid { max-width: 100%; }
+    .cd-unit { padding: 1.2rem 0.5rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand" id="nav-brand">יובל & אילנה</div>
+  <ul>
+    <li><a href="#countdown" id="nav-countdown">ספירה</a></li>
+    <li><a href="#details" id="nav-details">פרטים</a></li>
+    <li><a href="#map-section" id="nav-map">מיקום</a></li>
+    <li><a href="#rsvp" id="nav-rsvp">אישור הגעה</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="lang-he" onclick="setLang('he')">עב</button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">РУ</button>
+    </div>
+    <button class="nav-menu-btn" onclick="openMobileMenu()" aria-label="תפריט">&#9776;</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div id="nav-mobile-overlay">
+  <button class="close-btn" onclick="closeMobileMenu()" aria-label="סגור">&#10005;</button>
+  <a href="#countdown" id="mob-countdown" onclick="closeMobileMenu()">ספירה</a>
+  <a href="#details" id="mob-details" onclick="closeMobileMenu()">פרטים</a>
+  <a href="#map-section" id="mob-map" onclick="closeMobileMenu()">מיקום</a>
+  <a href="#rsvp" id="mob-rsvp" onclick="closeMobileMenu()">אישור הגעה</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="mob-lang-he" onclick="setLang('he');closeMobileMenu()">עב</button>
+    <button class="lang-btn" id="mob-lang-en" onclick="setLang('en');closeMobileMenu()">EN</button>
+    <button class="lang-btn" id="mob-lang-ru" onclick="setLang('ru');closeMobileMenu()">РУ</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="date-stamp fade-in d1">06 . 12 . 2026</div>
+    <h1 class="fade-in d2"><em id="name1">יובל</em></h1>
+    <span class="ampersand fade-in d3">&</span>
+    <h1 class="fade-in d3"><em id="name2">אילנה</em></h1>
+    <p class="subtitle fade-in d4" id="hero-sub">מתחתנים — ואתם מוזמנים לחגוג איתנו</p>
+    <div class="date-stamp fade-in d5" id="hero-venue">בית השמחות, תל אביב</div>
+  </div>
+  <div class="scroll-hint" id="scrollHint">גלול</div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+  <div class="section-inner">
+    <div class="section-label" id="label-countdown">ספירה לאחור</div>
+    <div class="countdown-grid">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">—</span><span class="cd-label" id="cd-d">ימים</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-hours">—</span><span class="cd-label" id="cd-h">שעות</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-mins">—</span><span class="cd-label" id="cd-m">דקות</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-secs">—</span><span class="cd-label" id="cd-s">שניות</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+  <div class="section-inner">
+    <div class="section-label" id="label-details">פרטי האירוע</div>
+    <div class="details-grid">
+      <div class="detail-block">
+        <h3 id="d-when-title">מתי</h3>
+        <p id="d-when-body">יום ראשון, 6 בדצמבר 2026<br>קבלת פנים: 19:00<br>חופה וסעודה: 20:00</p>
+      </div>
+      <div class="detail-block">
+        <h3 id="d-where-title">איפה</h3>
+        <p id="d-where-body">בית השמחות<br>מנחם בגין 21<br>תל אביב-יפו</p>
+        <a class="venue-link" href="https://www.beithasmachot.com" target="_blank" id="venue-link-text">לאתר המקום →</a>
+      </div>
+      <div class="detail-block">
+        <h3 id="d-park-title">חנייה</h3>
+        <p id="d-park-body">חניון בית הדר ממוקם צמוד למקום.<br>עלויות החנייה מכוסות על ידינו.<br>תחנת הרכבת: השלום.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map-section">
+  <div class="section-inner">
+    <div class="section-label" id="label-map">מפה</div>
+    <p id="map-address" style="color:var(--mid); font-size:14px;">מנחם בגין 21, תל אביב-יפו</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.2929826534386!2d34.77680661516!3d32.0614773811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b8285b1f5fb%3A0x3b8a1b1a1a1a1a1a!2z15HXldeUIDIxLCDXqteV15Qt15LXlQ!5e0!3m2!1siw!2sil!4v1620000000000!5m2!1siw!2sil"
+        allowfullscreen="" loading="lazy"
+        title="Beit Hasmachot location map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="section-inner">
+    <div class="section-label" id="label-rsvp">אישור הגעה</div>
+    <h2 id="rsvp-title">האם תגיעו?</h2>
+    <p class="rsvp-sub" id="rsvp-sub">אנא אשרו הגעה עד 01.11.2026</p>
+
+    <div class="rsvp-form" id="rsvpForm">
+      <div class="form-row">
+        <label id="f-name-label">שם מלא</label>
+        <input type="text" id="f-name" placeholder="שם ומשפחה" />
+      </div>
+      <div class="form-row">
+        <label id="f-phone-label">טלפון</label>
+        <input type="tel" id="f-phone" placeholder="050-000-0000" />
+      </div>
+      <div class="form-row">
+        <label id="f-attend-label">האם תגיעו?</label>
+        <div class="attend-toggle">
+          <button class="attend-btn active" id="btn-yes" onclick="setAttend('yes')">כן, בשמחה!</button>
+          <button class="attend-btn" id="btn-no" onclick="setAttend('no')">לצערי לא</button>
+        </div>
+      </div>
+      <div class="form-row" id="guests-row">
+        <label id="f-guests-label">מספר מגיעים</label>
+        <select id="f-guests">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5+">5+</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label id="f-note-label">הערות (אלרגיות, בקשות מיוחדות)</label>
+        <textarea id="f-note" rows="3" placeholder="אופציונלי..."></textarea>
+      </div>
+      <button class="submit-btn" id="submitBtn" onclick="submitRSVP()">שלח אישור</button>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <span id="success-text">תודה! נתראה בחתונה 🤍</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">יובל & אילנה</div>
+  <div id="footer-date">06 · 12 · 2026 · בית השמחות · תל אביב</div>
+  <div id="footer-made" style="font-size:11px;">בשמחות</div>
+</footer>
+
+<script>
+function openMobileMenu() { document.getElementById('nav-mobile-overlay').classList.add('open'); }
+function closeMobileMenu() { document.getElementById('nav-mobile-overlay').classList.remove('open'); }
+
+
+
+const attend = { val: 'yes' };
+
+function setAttend(v) {
+  attend.val = v;
+  document.getElementById('btn-yes').classList.toggle('active', v === 'yes');
+  document.getElementById('btn-no').classList.toggle('active', v === 'no');
+  document.getElementById('guests-row').style.display = v === 'yes' ? 'block' : 'none';
+}
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzkDzef7RKBxktgsGsyDzwFc8xtB8LTyrBNAUQWi512yPpBx_CQ9k_D_e-ReiTfcvwWMw/exec';
+
+function submitRSVP() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { document.getElementById('f-name').focus(); return; }
+
+  const payload = {
+    name,
+    phone: document.getElementById('f-phone').value.trim(),
+    attending: attend.val,
+    guests: attend.val === 'yes' ? document.getElementById('f-guests').value : '0',
+    notes: document.getElementById('f-note').value.trim(),
+    lang: currentLang,
+    timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })
+  };
+
+  document.getElementById('rsvpForm').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  const msgs = {
+    he: { yes: 'תודה! נתראה בחתונה 🤍', no: 'תודה שהודעת לנו. נחשוב עליך 🤍' },
+    en: { yes: 'Thank you! See you at the wedding 🤍', no: "Thanks for letting us know. We'll miss you 🤍" },
+    ru: { yes: 'Спасибо! Увидимся на свадьбе 🤍', no: 'Спасибо, что сообщили. Будем скучать 🤍' }
+  };
+  document.getElementById('success-text').textContent = msgs[currentLang][attend.val];
+
+  try {
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+}
+
+// Countdown
+function updateCountdown() {
+  const target = new Date('2026-12-06T20:00:00+02:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+window.addEventListener('DOMContentLoaded', updateCountdown);
+
+// Language toggle
+const strings = {
+  he: {
+    'nav-brand': 'יובל & אילנה',
+    'nav-countdown': 'ספירה',
+    'nav-details': 'פרטים',
+    'nav-map': 'מיקום',
+    'nav-rsvp': 'אישור הגעה',
+    'name1': 'יובל',
+    'name2': 'אילנה',
+    'hero-sub': 'מתחתנים — ואתם מוזמנים לחגוג איתנו',
+    'hero-venue': 'בית השמחות, תל אביב',
+    'scrollHint': 'גלול',
+    'label-countdown': 'ספירה לאחור',
+    'cd-d': 'ימים',
+    'cd-h': 'שעות',
+    'cd-m': 'דקות',
+    'cd-s': 'שניות',
+    'label-details': 'פרטי האירוע',
+    'd-when-title': 'מתי',
+    'd-when-body': 'יום ראשון, 6 בדצמבר 2026<br>קבלת פנים: 19:00<br>חופה וסעודה: 20:00',
+    'd-where-title': 'איפה',
+    'd-where-body': 'בית השמחות<br>מנחם בגין 21<br>תל אביב-יפו',
+    'venue-link-text': 'לאתר המקום →',
+    'd-park-title': 'חנייה',
+    'd-park-body': 'חניון בית הדר ממוקם צמוד למקום.<br>עלויות החנייה מכוסות על ידינו.<br>תחנת הרכבת: השלום.',
+    'label-map': 'מפה',
+    'map-address': 'מנחם בגין 21, תל אביב-יפו',
+    'label-rsvp': 'אישור הגעה',
+    'rsvp-title': 'האם תגיעו?',
+    'rsvp-sub': 'אנא אשרו הגעה עד 01.11.2026',
+    'f-name-label': 'שם מלא',
+    'f-phone-label': 'טלפון',
+    'f-attend-label': 'האם תגיעו?',
+    'f-guests-label': 'מספר מגיעים',
+    'f-note-label': 'הערות (אלרגיות, בקשות מיוחדות)',
+    'submitBtn': 'שלח אישור',
+    'btn-yes': 'כן, בשמחה!',
+    'btn-no': 'לצערי לא',
+    'footer-date': '06 · 12 · 2026 · בית השמחות · תל אביב',
+    'footer-made': 'בשמחות',
+  },
+  en: {
+    'nav-brand': 'Yuval & Ilana',
+    'nav-countdown': 'Countdown',
+    'nav-details': 'Details',
+    'nav-map': 'Location',
+    'nav-rsvp': 'RSVP',
+    'name1': 'Yuval',
+    'name2': 'Ilana',
+    'hero-sub': 'are getting married — and you\'re invited to celebrate with us',
+    'hero-venue': 'Beit Hasmachot, Tel Aviv',
+    'scrollHint': 'scroll',
+    'label-countdown': 'Countdown',
+    'cd-d': 'Days',
+    'cd-h': 'Hours',
+    'cd-m': 'Minutes',
+    'cd-s': 'Seconds',
+    'label-details': 'Event Details',
+    'd-when-title': 'When',
+    'd-when-body': 'Sunday, December 6th, 2026<br>Reception: 7:00 PM<br>Ceremony & Dinner: 8:00 PM',
+    'd-where-title': 'Where',
+    'd-where-body': 'Beit Hasmachot<br>21 Menachem Begin St.<br>Tel Aviv-Jaffa',
+    'venue-link-text': 'Visit venue website →',
+    'd-park-title': 'Parking',
+    'd-park-body': 'Beit Hadar parking garage is right next to the venue.<br>Parking costs are covered by us.<br>Train station: HaShalom.',
+    'label-map': 'Location',
+    'map-address': '21 Menachem Begin St., Tel Aviv-Jaffa',
+    'label-rsvp': 'RSVP',
+    'rsvp-title': 'Will you join us?',
+    'rsvp-sub': 'Please RSVP by November 1st, 2026',
+    'f-name-label': 'Full Name',
+    'f-phone-label': 'Phone',
+    'f-attend-label': 'Will you attend?',
+    'f-guests-label': 'Number of guests',
+    'f-note-label': 'Notes (allergies, special requests)',
+    'submitBtn': 'Send RSVP',
+    'btn-yes': 'Joyfully attending!',
+    'btn-no': 'Regretfully declining',
+    'footer-date': '06 · 12 · 2026 · Beit Hasmachot · Tel Aviv',
+    'footer-made': 'beshimchot',
+  },
+  ru: {
+    'nav-brand': 'Юваль & Илана',
+    'nav-countdown': 'Обратный отсчёт',
+    'nav-details': 'Детали',
+    'nav-map': 'Место',
+    'nav-rsvp': 'Подтверждение',
+    'name1': 'Юваль',
+    'name2': 'Илана',
+    'hero-sub': 'приглашают вас разделить с ними радость свадьбы',
+    'hero-venue': 'Бейт а-Симхот, Тель-Авив',
+    'scrollHint': 'вниз',
+    'label-countdown': 'Обратный отсчёт',
+    'cd-d': 'Дней',
+    'cd-h': 'Часов',
+    'cd-m': 'Минут',
+    'cd-s': 'Секунд',
+    'label-details': 'Детали мероприятия',
+    'd-when-title': 'Когда',
+    'd-when-body': 'Воскресенье, 6 декабря 2026<br>Встреча гостей: 19:00<br>Церемония и ужин: 20:00',
+    'd-where-title': 'Где',
+    'd-where-body': 'Бейт а-Симхот<br>ул. Менахем Бегин 21<br>Тель-Авив-Яффо',
+    'venue-link-text': 'Сайт заведения →',
+    'd-park-title': 'Парковка',
+    'd-park-body': 'Парковка Бейт а-Дар находится рядом с залом.<br>Стоимость парковки покрывается нами.<br>Ж/д станция: а-Шалом.',
+    'label-map': 'Место',
+    'map-address': 'ул. Менахем Бегин 21, Тель-Авив-Яффо',
+    'label-rsvp': 'Подтверждение',
+    'rsvp-title': 'Вы придёте?',
+    'rsvp-sub': 'Пожалуйста, подтвердите участие до 01.11.2026',
+    'f-name-label': 'Полное имя',
+    'f-phone-label': 'Телефон',
+    'f-attend-label': 'Вы придёте?',
+    'f-guests-label': 'Количество гостей',
+    'f-note-label': 'Примечания (аллергии, особые пожелания)',
+    'submitBtn': 'Отправить',
+    'btn-yes': 'С радостью придём!',
+    'btn-no': 'К сожалению, нет',
+    'footer-date': '06 · 12 · 2026 · Бейт а-Симхот · Тель-Авив',
+    'footer-made': 'бешимхот',
+  }
+};
+
+let currentLang = 'he';
+function setLang(lang) {
+  currentLang = lang;
+  const isRtl = lang === 'he';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  ['he','en','ru'].forEach(l => {
+    document.getElementById('lang-'+l).classList.toggle('active', l === lang);
+    const mob = document.getElementById('mob-lang-'+l);
+    if (mob) mob.classList.toggle('active', l === lang);
+  });
+  const mobLinks = {
+    'mob-countdown': strings[lang]['nav-countdown'],
+    'mob-details':   strings[lang]['nav-details'],
+    'mob-map':       strings[lang]['nav-map'],
+    'mob-rsvp':      strings[lang]['nav-rsvp'],
+  };
+  for (const [id, val] of Object.entries(mobLinks)) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+  const s = strings[lang];
+  for (const [id, val] of Object.entries(s)) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  }
+  if (attend.val === 'yes') {
+    document.getElementById('btn-yes').classList.add('active');
+    document.getElementById('btn-no').classList.remove('active');
+  } else {
+    document.getElementById('btn-no').classList.add('active');
+    document.getElementById('btn-yes').classList.remove('active');
+  }
+}
+</script>
+<iframe name="hidden-iframe" style="display:none"></iframe>
+</body>
+</html>
+">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יובל & אילנה — 06.12.26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Heebo:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111110;
+    --paper: #f7f5f0;
+    --mid: #888780;
+    --line: rgba(17,17,16,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Heebo', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יובל & אילנה — 06.12.26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Heebo:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111110;
+    --paper: #f7f5f0;
+    --mid: #888780;
+    --line: rgba(17,17,16,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Heebo', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--line);
+  }
+  nav .brand { font-family: var(--serif); font-size: 1rem; letter-spacing: 0.08em; color: var(--ink); }
+  nav ul { list-style: none; display: flex; gap: 2rem; direction: ltr; }
+  nav ul a { text-decoration: none; color: var(--mid); font-size: 13px; letter-spacing: 0.06em; transition: color 0.2s; }
+  nav ul a:hover { color: var(--ink); }
+  .lang-switcher {
+    display: flex; gap: 1px; background: var(--line); border: 0.5px solid var(--line); border-radius: 2px; overflow: hidden;
+  }
+  .lang-btn {
+    background: var(--paper); border: none; padding: 4px 10px;
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.06em;
+    color: var(--mid); cursor: pointer; transition: all 0.2s;
+  }
+  .lang-btn:hover { color: var(--ink); background: rgba(17,17,16,0.06); }
+  .lang-btn.active { background: var(--ink); color: var(--paper); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+  }
+  .hero-inner { max-width: 640px; }
+
+  .date-stamp {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--mid);
+    text-transform: uppercase; margin-bottom: 2.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    direction: ltr;
+  }
+  .date-stamp::before, .date-stamp::after {
+    content: ''; display: block; width: 40px; height: 0.5px; background: var(--mid);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+  h1 em { font-style: italic; }
+  .ampersand {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--mid);
+    display: block;
+    line-height: 1;
+    margin: 0.2rem 0;
+  }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-style: italic;
+    color: var(--mid);
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    font-size: 11px; letter-spacing: 0.15em; color: var(--mid);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  }
+  .scroll-hint::after {
+    content: ''; width: 0.5px; height: 40px; background: var(--mid);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  section + section { border-top: 0.5px solid var(--line); }
+  .section-inner { max-width: 800px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--mid);
+    text-transform: uppercase; margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--line); }
+
+  /* ── RTL overrides ── */
+  [dir="rtl"] .section-label { flex-direction: row-reverse; }
+  [dir="rtl"] .section-label::after { display: none; }
+  [dir="rtl"] .section-label::before { content: ''; flex: 1; height: 0.5px; background: var(--line); }
+  [dir="rtl"] nav { flex-direction: row-reverse; }
+  [dir="rtl"] footer { flex-direction: row-reverse; }
+
+  /* ── COUNTDOWN ── */
+  #countdown { text-align: center; }
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 0.5px solid var(--line);
+    margin: 2rem auto;
+    max-width: 500px;
+    direction: ltr;
+  }
+  .cd-unit {
+    background: var(--paper);
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  .cd-num {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+  .cd-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--mid); text-transform: uppercase;
+    display: block; margin-top: 0.4rem;
+  }
+
+  /* ── DETAILS ── */
+  #details .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .detail-block h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+  }
+  .detail-block p { color: var(--mid); font-size: 14px; line-height: 1.9; }
+  .detail-block a { color: var(--ink); }
+  .venue-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; margin-top: 1rem;
+    border-bottom: 0.5px solid var(--ink); padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .venue-link:hover { opacity: 0.5; }
+
+  /* ── MAP ── */
+  #map-section .map-container {
+    width: 100%; height: 360px;
+    background: #e8e6e0;
+    border: 0.5px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  #map-section iframe {
+    width: 100%; height: 100%;
+    border: none; filter: grayscale(1) contrast(0.9);
+  }
+
+  /* ── RSVP ── */
+  #rsvp { text-align: center; }
+  #rsvp h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+  #rsvp .rsvp-sub { color: var(--mid); font-size: 14px; margin-bottom: 3rem; }
+
+  .rsvp-form { max-width: 420px; margin: 0 auto; text-align: left; }
+  [dir="rtl"] .rsvp-form { text-align: right; }
+  .form-row { margin-bottom: 1.5rem; }
+  .form-row label {
+    display: block; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); margin-bottom: 0.5rem;
+  }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    background: transparent;
+    border: none; border-bottom: 0.5px solid var(--ink);
+    padding: 0.5rem 0;
+    font-family: var(--sans); font-size: 15px; font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    border-radius: 0;
+    appearance: none;
+    transition: border-color 0.2s;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--ink);
+    border-bottom-width: 1px;
+  }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-row select { background: var(--paper); cursor: pointer; }
+  .form-row select option { background: var(--paper); }
+
+  .attend-toggle {
+    display: flex; gap: 1px; background: var(--line); border: 0.5px solid var(--line);
+  }
+  .attend-btn {
+    flex: 1; padding: 0.8rem; background: var(--paper);
+    border: none; font-family: var(--sans); font-size: 13px; font-weight: 300;
+    letter-spacing: 0.06em; color: var(--mid); cursor: pointer; transition: all 0.2s;
+  }
+  .attend-btn.active { background: var(--ink); color: var(--paper); }
+
+  .submit-btn {
+    width: 100%; padding: 1rem;
+    background: var(--ink); color: var(--paper);
+    border: none; font-family: var(--sans); font-size: 13px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; margin-top: 2rem; transition: opacity 0.2s;
+  }
+  .submit-btn:hover { opacity: 0.75; }
+
+  .success-msg {
+    display: none; text-align: center; padding: 3rem 0;
+    font-family: var(--serif); font-size: 1.8rem; font-weight: 300;
+    font-style: italic; color: var(--mid);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 0.5px solid var(--line);
+    padding: 3rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--mid); letter-spacing: 0.08em;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .footer-names { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    animation: fadeUp 0.9s ease forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.3s; }
+  .d3 { animation-delay: 0.5s; }
+  .d4 { animation-delay: 0.7s; }
+  .d5 { animation-delay: 0.9s; }
+
+  /* ── MOBILE NAV MENU ── */
+  .nav-menu-btn {
+    display: none; background: none; border: none;
+    cursor: pointer; padding: 4px; color: var(--ink);
+    font-size: 22px; line-height: 1;
+  }
+  #nav-mobile-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(247,245,240,0.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  #nav-mobile-overlay.open { display: flex; }
+  #nav-mobile-overlay a {
+    font-family: var(--serif); font-size: 2rem; font-weight: 300;
+    text-decoration: none; color: var(--ink); font-style: italic;
+  }
+  #nav-mobile-overlay .close-btn {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    background: none; border: none; font-size: 24px; cursor: pointer; color: var(--ink);
+  }
+  [dir="rtl"] #nav-mobile-overlay .close-btn { left: auto; right: 1.5rem; }
+  #nav-mobile-overlay .lang-switcher { margin-top: 1rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    nav ul { display: none; }
+    .nav-menu-btn { display: block; }
+    section { padding: 3.5rem 1.25rem; }
+    #hero { padding: 6rem 1.25rem 3rem; }
+    #details .details-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .countdown-grid { max-width: 100%; }
+    .cd-unit { padding: 1.2rem 0.5rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand" id="nav-brand">יובל & אילנה</div>
+  <ul>
+    <li><a href="#countdown" id="nav-countdown">ספירה</a></li>
+    <li><a href="#details" id="nav-details">פרטים</a></li>
+    <li><a href="#map-section" id="nav-map">מיקום</a></li>
+    <li><a href="#rsvp" id="nav-rsvp">אישור הגעה</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="lang-he" onclick="setLang('he')">עב</button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">РУ</button>
+    </div>
+    <button class="nav-menu-btn" onclick="openMobileMenu()" aria-label="תפריט">&#9776;</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div id="nav-mobile-overlay">
+  <button class="close-btn" onclick="closeMobileMenu()" aria-label="סגור">&#10005;</button>
+  <a href="#countdown" id="mob-countdown" onclick="closeMobileMenu()">ספירה</a>
+  <a href="#details" id="mob-details" onclick="closeMobileMenu()">פרטים</a>
+  <a href="#map-section" id="mob-map" onclick="closeMobileMenu()">מיקום</a>
+  <a href="#rsvp" id="mob-rsvp" onclick="closeMobileMenu()">אישור הגעה</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="mob-lang-he" onclick="setLang('he');closeMobileMenu()">עב</button>
+    <button class="lang-btn" id="mob-lang-en" onclick="setLang('en');closeMobileMenu()">EN</button>
+    <button class="lang-btn" id="mob-lang-ru" onclick="setLang('ru');closeMobileMenu()">РУ</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="date-stamp fade-in d1">06 . 12 . 2026</div>
+    <h1 class="fade-in d2"><em id="name1">יובל</em></h1>
+    <span class="ampersand fade-in d3">&</span>
+    <h1 class="fade-in d3"><em id="name2">אילנה</em></h1>
+    <p class="subtitle fade-in d4" id="hero-sub">מתחתנים — ואתם מוזמנים לחגוג איתנו</p>
+    <div class="date-stamp fade-in d5" id="hero-venue">בית השמחות, תל אביב</div>
+  </div>
+  <div class="scroll-hint" id="scrollHint">גלול</div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+  <div class="section-inner">
+    <div class="section-label" id="label-countdown">ספירה לאחור</div>
+    <div class="countdown-grid">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">—</span><span class="cd-label" id="cd-d">ימים</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-hours">—</span><span class="cd-label" id="cd-h">שעות</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-mins">—</span><span class="cd-label" id="cd-m">דקות</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-secs">—</span><span class="cd-label" id="cd-s">שניות</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+  <div class="section-inner">
+    <div class="section-label" id="label-details">פרטי האירוע</div>
+    <div class="details-grid">
+      <div class="detail-block">
+        <h3 id="d-when-title">מתי</h3>
+        <p id="d-when-body">יום ראשון, 6 בדצמבר 2026<br>קבלת פנים: 19:00<br>חופה וסעודה: 20:00</p>
+      </div>
+      <div class="detail-block">
+        <h3 id="d-where-title">איפה</h3>
+        <p id="d-where-body">בית השמחות<br>מנחם בגין 21<br>תל אביב-יפו</p>
+        <a class="venue-link" href="https://www.beithasmachot.com" target="_blank" id="venue-link-text">לאתר המקום →</a>
+      </div>
+      <div class="detail-block">
+        <h3 id="d-park-title">חנייה</h3>
+        <p id="d-park-body">חניון בית הדר ממוקם צמוד למקום.<br>עלויות החנייה מכוסות על ידינו.<br>תחנת הרכבת: השלום.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map-section">
+  <div class="section-inner">
+    <div class="section-label" id="label-map">מפה</div>
+    <p id="map-address" style="color:var(--mid); font-size:14px;">מנחם בגין 21, תל אביב-יפו</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.2929826534386!2d34.77680661516!3d32.0614773811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b8285b1f5fb%3A0x3b8a1b1a1a1a1a1a!2z15HXldeUIDIxLCDXqteV15Qt15LXlQ!5e0!3m2!1siw!2sil!4v1620000000000!5m2!1siw!2sil"
+        allowfullscreen="" loading="lazy"
+        title="Beit Hasmachot location map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="section-inner">
+    <div class="section-label" id="label-rsvp">אישור הגעה</div>
+    <h2 id="rsvp-title">האם תגיעו?</h2>
+    <p class="rsvp-sub" id="rsvp-sub">אנא אשרו הגעה עד 01.11.2026</p>
+
+    <div class="rsvp-form" id="rsvpForm">
+      <div class="form-row">
+        <label id="f-name-label">שם מלא</label>
+        <input type="text" id="f-name" placeholder="שם ומשפחה" />
+      </div>
+      <div class="form-row">
+        <label id="f-phone-label">טלפון</label>
+        <input type="tel" id="f-phone" placeholder="050-000-0000" />
+      </div>
+      <div class="form-row">
+        <label id="f-attend-label">האם תגיעו?</label>
+        <div class="attend-toggle">
+          <button class="attend-btn active" id="btn-yes" onclick="setAttend('yes')">כן, בשמחה!</button>
+          <button class="attend-btn" id="btn-no" onclick="setAttend('no')">לצערי לא</button>
+        </div>
+      </div>
+      <div class="form-row" id="guests-row">
+        <label id="f-guests-label">מספר מגיעים</label>
+        <select id="f-guests">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5+">5+</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label id="f-note-label">הערות (אלרגיות, בקשות מיוחדות)</label>
+        <textarea id="f-note" rows="3" placeholder="אופציונלי..."></textarea>
+      </div>
+      <button class="submit-btn" id="submitBtn" onclick="submitRSVP()">שלח אישור</button>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <span id="success-text">תודה! נתראה בחתונה 🤍</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">יובל & אילנה</div>
+  <div id="footer-date">06 · 12 · 2026 · בית השמחות · תל אביב</div>
+  <div id="footer-made" style="font-size:11px;">בשמחות</div>
+</footer>
+
+<script>
+function openMobileMenu() { document.getElementById('nav-mobile-overlay').classList.add('open'); }
+function closeMobileMenu() { document.getElementById('nav-mobile-overlay').classList.remove('open'); }
+
+
+
+const attend = { val: 'yes' };
+
+function setAttend(v) {
+  attend.val = v;
+  document.getElementById('btn-yes').classList.toggle('active', v === 'yes');
+  document.getElementById('btn-no').classList.toggle('active', v === 'no');
+  document.getElementById('guests-row').style.display = v === 'yes' ? 'block' : 'none';
+}
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzkDzef7RKBxktgsGsyDzwFc8xtB8LTyrBNAUQWi512yPpBx_CQ9k_D_e-ReiTfcvwWMw/exec';
+
+function submitRSVP() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { document.getElementById('f-name').focus(); return; }
+
+  const payload = {
+    name,
+    phone: document.getElementById('f-phone').value.trim(),
+    attending: attend.val,
+    guests: attend.val === 'yes' ? document.getElementById('f-guests').value : '0',
+    notes: document.getElementById('f-note').value.trim(),
+    lang: currentLang,
+    timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })
+  };
+
+  document.getElementById('rsvpForm').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  const msgs = {
+    he: { yes: 'תודה! נתראה בחתונה 🤍', no: 'תודה שהודעת לנו. נחשוב עליך 🤍' },
+    en: { yes: 'Thank you! See you at the wedding 🤍', no: "Thanks for letting us know. We'll miss you 🤍" },
+    ru: { yes: 'Спасибо! Увидимся на свадьбе 🤍', no: 'Спасибо, что сообщили. Будем скучать 🤍' }
+  };
+  document.getElementById('success-text').textContent = msgs[currentLang][attend.val];
+
+  try {
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+}
+
+// Countdown
+function updateCountdown() {
+  const target = new Date('2026-12-06T20:00:00+02:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+window.addEventListener('DOMContentLoaded', updateCountdown);
+
+// Language toggle
+const strings = {
+  he: {
+    'nav-brand': 'יובל & אילנה',
+    'nav-countdown': 'ספירה',
+    'nav-details': 'פרטים',
+    'nav-map': 'מיקום',
+    'nav-rsvp': 'אישור הגעה',
+    'name1': 'יובל',
+    'name2': 'אילנה',
+    'hero-sub': 'מתחתנים — ואתם מוזמנים לחגוג איתנו',
+    'hero-venue': 'בית השמחות, תל אביב',
+    'scrollHint': 'גלול',
+    'label-countdown': 'ספירה לאחור',
+    'cd-d': 'ימים',
+    'cd-h': 'שעות',
+    'cd-m': 'דקות',
+    'cd-s': 'שניות',
+    'label-details': 'פרטי האירוע',
+    'd-when-title': 'מתי',
+    'd-when-body': 'יום ראשון, 6 בדצמבר 2026<br>קבלת פנים: 19:00<br>חופה וסעודה: 20:00',
+    'd-where-title': 'איפה',
+    'd-where-body': 'בית השמחות<br>מנחם בגין 21<br>תל אביב-יפו',
+    'venue-link-text': 'לאתר המקום →',
+    'd-park-title': 'חנייה',
+    'd-park-body': 'חניון בית הדר ממוקם צמוד למקום.<br>עלויות החנייה מכוסות על ידינו.<br>תחנת הרכבת: השלום.',
+    'label-map': 'מפה',
+    'map-address': 'מנחם בגין 21, תל אביב-יפו',
+    'label-rsvp': 'אישור הגעה',
+    'rsvp-title': 'האם תגיעו?',
+    'rsvp-sub': 'אנא אשרו הגעה עד 01.11.2026',
+    'f-name-label': 'שם מלא',
+    'f-phone-label': 'טלפון',
+    'f-attend-label': 'האם תגיעו?',
+    'f-guests-label': 'מספר מגיעים',
+    'f-note-label': 'הערות (אלרגיות, בקשות מיוחדות)',
+    'submitBtn': 'שלח אישור',
+    'btn-yes': 'כן, בשמחה!',
+    'btn-no': 'לצערי לא',
+    'footer-date': '06 · 12 · 2026 · בית השמחות · תל אביב',
+    'footer-made': 'בשמחות',
+  },
+  en: {
+    'nav-brand': 'Yuval & Ilana',
+    'nav-countdown': 'Countdown',
+    'nav-details': 'Details',
+    'nav-map': 'Location',
+    'nav-rsvp': 'RSVP',
+    'name1': 'Yuval',
+    'name2': 'Ilana',
+    'hero-sub': 'are getting married — and you\'re invited to celebrate with us',
+    'hero-venue': 'Beit Hasmachot, Tel Aviv',
+    'scrollHint': 'scroll',
+    'label-countdown': 'Countdown',
+    'cd-d': 'Days',
+    'cd-h': 'Hours',
+    'cd-m': 'Minutes',
+    'cd-s': 'Seconds',
+    'label-details': 'Event Details',
+    'd-when-title': 'When',
+    'd-when-body': 'Sunday, December 6th, 2026<br>Reception: 7:00 PM<br>Ceremony & Dinner: 8:00 PM',
+    'd-where-title': 'Where',
+    'd-where-body': 'Beit Hasmachot<br>21 Menachem Begin St.<br>Tel Aviv-Jaffa',
+    'venue-link-text': 'Visit venue website →',
+    'd-park-title': 'Parking',
+    'd-park-body': 'Beit Hadar parking garage is right next to the venue.<br>Parking costs are covered by us.<br>Train station: HaShalom.',
+    'label-map': 'Location',
+    'map-address': '21 Menachem Begin St., Tel Aviv-Jaffa',
+    'label-rsvp': 'RSVP',
+    'rsvp-title': 'Will you join us?',
+    'rsvp-sub': 'Please RSVP by November 1st, 2026',
+    'f-name-label': 'Full Name',
+    'f-phone-label': 'Phone',
+    'f-attend-label': 'Will you attend?',
+    'f-guests-label': 'Number of guests',
+    'f-note-label': 'Notes (allergies, special requests)',
+    'submitBtn': 'Send RSVP',
+    'btn-yes': 'Joyfully attending!',
+    'btn-no': 'Regretfully declining',
+    'footer-date': '06 · 12 · 2026 · Beit Hasmachot · Tel Aviv',
+    'footer-made': 'beshimchot',
+  },
+  ru: {
+    'nav-brand': 'Юваль & Илана',
+    'nav-countdown': 'Обратный отсчёт',
+    'nav-details': 'Детали',
+    'nav-map': 'Место',
+    'nav-rsvp': 'Подтверждение',
+    'name1': 'Юваль',
+    'name2': 'Илана',
+    'hero-sub': 'приглашают вас разделить с ними радость свадьбы',
+    'hero-venue': 'Бейт а-Симхот, Тель-Авив',
+    'scrollHint': 'вниз',
+    'label-countdown': 'Обратный отсчёт',
+    'cd-d': 'Дней',
+    'cd-h': 'Часов',
+    'cd-m': 'Минут',
+    'cd-s': 'Секунд',
+    'label-details': 'Детали мероприятия',
+    'd-when-title': 'Когда',
+    'd-when-body': 'Воскресенье, 6 декабря 2026<br>Встреча гостей: 19:00<br>Церемония и ужин: 20:00',
+    'd-where-title': 'Где',
+    'd-where-body': 'Бейт а-Симхот<br>ул. Менахем Бегин 21<br>Тель-Авив-Яффо',
+    'venue-link-text': 'Сайт заведения →',
+    'd-park-title': 'Парковка',
+    'd-park-body': 'Парковка Бейт а-Дар находится рядом с залом.<br>Стоимость парковки покрывается нами.<br>Ж/д станция: а-Шалом.',
+    'label-map': 'Место',
+    'map-address': 'ул. Менахем Бегин 21, Тель-Авив-Яффо',
+    'label-rsvp': 'Подтверждение',
+    'rsvp-title': 'Вы придёте?',
+    'rsvp-sub': 'Пожалуйста, подтвердите участие до 01.11.2026',
+    'f-name-label': 'Полное имя',
+    'f-phone-label': 'Телефон',
+    'f-attend-label': 'Вы придёте?',
+    'f-guests-label': 'Количество гостей',
+    'f-note-label': 'Примечания (аллергии, особые пожелания)',
+    'submitBtn': 'Отправить',
+    'btn-yes': 'С радостью придём!',
+    'btn-no': 'К сожалению, нет',
+    'footer-date': '06 · 12 · 2026 · Бейт а-Симхот · Тель-Авив',
+    'footer-made': 'бешимхот',
+  }
+};
+
+let currentLang = 'he';
+function setLang(lang) {
+  currentLang = lang;
+  const isRtl = lang === 'he';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  ['he','en','ru'].forEach(l => {
+    document.getElementById('lang-'+l).classList.toggle('active', l === lang);
+    const mob = document.getElementById('mob-lang-'+l);
+    if (mob) mob.classList.toggle('active', l === lang);
+  });
+  const mobLinks = {
+    'mob-countdown': strings[lang]['nav-countdown'],
+    'mob-details':   strings[lang]['nav-details'],
+    'mob-map':       strings[lang]['nav-map'],
+    'mob-rsvp':      strings[lang]['nav-rsvp'],
+  };
+  for (const [id, val] of Object.entries(mobLinks)) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+  const s = strings[lang];
+  for (const [id, val] of Object.entries(s)) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  }
+  if (attend.val === 'yes') {
+    document.getElementById('btn-yes').classList.add('active');
+    document.getElementById('btn-no').classList.remove('active');
+  } else {
+    document.getElementById('btn-no').classList.add('active');
+    document.getElementById('btn-yes').classList.remove('active');
+  }
+}
+</script>
+<iframe name="hidden-iframe" style="display:none"></iframe>
+</body>
+</html>
+
     font-size: 15px;
     line-height: 1.7;
     overflow-x: hidden;
