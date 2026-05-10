@@ -500,25 +500,40 @@ function submitRSVP() {
     timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })
   };
 
-  document.getElementById('rsvpForm').style.display = 'none';
-  document.getElementById('successMsg').style.display = 'block';
   const msgs = {
     he: { yes: 'תודה! נתראה בחתונה 🤍', no: 'תודה שהודעת לנו. נחשוב עליך 🤍' },
     en: { yes: 'Thank you! See you at the wedding 🤍', no: "Thanks for letting us know. We'll miss you 🤍" },
     ru: { yes: 'Спасибо! Увидимся на свадьбе 🤍', no: 'Спасибо, что сообщили. Будем скучать 🤍' }
   };
-  document.getElementById('success-text').textContent = msgs[currentLang][attend.val];
 
-  try {
-    fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-  } catch(e) {}
+  const errMsgs = {
+    he: 'השליחה נכשלה, אנא נסו שוב',
+    en: 'Submission failed, please try again',
+    ru: 'Не удалось отправить, попробуйте ещё раз'
+  };
+
+  // Disable the button so users can't double-submit while waiting
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.style.opacity = '0.5';
+
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    document.getElementById('rsvpForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('success-text').textContent = msgs[currentLang][attend.val];
+  })
+  .catch(() => {
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    alert(errMsgs[currentLang]);
+  });
 }
-
 // Countdown
 function updateCountdown() {
   const target = new Date('2026-12-06T20:00:00+02:00');
