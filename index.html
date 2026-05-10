@@ -76,38 +76,24 @@ nav ul a:hover { color: var(--ink); }
   overflow: hidden;
   isolation: isolate;
 }
-/* hero photo as background */
+/* hero photo — small framed portrait */
 .hero-photo {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+  width: 180px;
+  height: 240px;
+  margin: 0 auto 2.5rem;
   background-image: url('couple.jpg');
   background-size: cover;
   background-position: center 25%;
   background-repeat: no-repeat;
   filter: grayscale(0.3) contrast(0.95);
+  border: 0.5px solid var(--line);
+  box-shadow: 0 1px 30px rgba(17,17,16,0.08);
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards;
+  animation-delay: 0.05s;
 }
-/* paper overlay for legibility — light & airy */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(247,245,240,0.55) 0%,
-      rgba(247,245,240,0.70) 40%,
-      rgba(247,245,240,0.85) 100%
-    );
-}
-/* fallback: if image is missing, keep original look */
-.hero-photo.no-image {
-  background-image: none;
-}
-.hero-photo.no-image + .hero-overlay {
-  background: var(--paper);
-}
-
+/* fallback: if image is missing, hide the frame entirely */
+.hero-photo.no-image { display: none; }
 .hero-inner {
   max-width: 640px;
   will-change: transform, opacity;
