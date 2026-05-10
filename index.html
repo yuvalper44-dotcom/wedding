@@ -73,10 +73,45 @@ nav ul a:hover { color: var(--ink); }
   text-align: center;
   padding: 8rem 2rem 4rem;
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
+/* hero photo as background */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url('couple.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  filter: grayscale(0.3) contrast(0.95);
+}
+/* paper overlay for legibility — light & airy */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(247,245,240,0.55) 0%,
+      rgba(247,245,240,0.70) 40%,
+      rgba(247,245,240,0.85) 100%
+    );
+}
+/* fallback: if image is missing, keep original look */
+.hero-photo.no-image {
+  background-image: none;
+}
+.hero-photo.no-image + .hero-overlay {
+  background: var(--paper);
+}
+
 .hero-inner {
   max-width: 640px;
   will-change: transform, opacity;
+  position: relative;
 }
 .date-stamp {
   font-size: 11px; letter-spacing: 0.2em; color: var(--mid);
@@ -94,6 +129,8 @@ h1 {
   line-height: 1.05;
   letter-spacing: -0.01em;
   margin-bottom: 0.3rem;
+  /* subtle shadow for legibility over photo */
+  text-shadow: 0 1px 20px rgba(247,245,240,0.6);
 }
 h1 em { font-style: italic; }
 .ampersand {
@@ -405,6 +442,7 @@ footer .footer-names { font-family: var(--serif); font-size: 1rem; color: var(--
   .nav-menu-btn { display: block; }
   section { padding: 3.5rem 1.25rem; }
   #hero { padding: 6rem 1.25rem 3rem; }
+  .hero-photo { background-position: center 20%; }
   #details .details-grid { grid-template-columns: 1fr; gap: 2rem; }
   .countdown-grid { max-width: 100%; }
   .cd-unit { padding: 1.2rem 0.5rem; }
@@ -448,6 +486,8 @@ footer .footer-names { font-family: var(--serif); font-size: 1rem; color: var(--
 </div>
 
 <section id="hero">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="date-stamp fade-in d1">06 . 12 . 2026</div>
     <h1 class="fade-in d2"><em id="name1">יובל</em></h1>
@@ -601,6 +641,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', () => clearError(id));
   });
+  // detect missing hero image, fall back gracefully
+  const heroPhoto = document.getElementById('heroPhoto');
+  if (heroPhoto) {
+    const img = new Image();
+    img.onerror = () => heroPhoto.classList.add('no-image');
+    img.src = 'couple.jpg';
+  }
 });
 
 function submitRSVP() {
